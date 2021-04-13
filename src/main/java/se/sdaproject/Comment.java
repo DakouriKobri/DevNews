@@ -1,9 +1,10 @@
 package se.sdaproject;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Comment {
@@ -12,11 +13,19 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    @NotBlank
     private String body;
+    @Column(nullable = false)
+    @NotBlank
     private String authorName;
 
     @ManyToOne
-    @JsonIgnore
+    // @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @JoinColumn(nullable = false)
+    @NotNull
     private Article owner;
 
     public Comment(String body, String authorName) {
