@@ -1,4 +1,7 @@
-package se.sdaproject;
+package se.sdaproject.Article;
+
+import se.sdaproject.Comment.Comment;
+import se.sdaproject.Topic.Topic;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +19,9 @@ public class Article {
 
     @OneToMany(mappedBy = "owner")
     private List<Comment> comments;
+
+    @ManyToMany
+    private List<Topic> topics;
 
     public Article() {
 
@@ -62,5 +68,13 @@ public class Article {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Topic> getTopics() {
+        return this.topics;
+    }
+
+    public void setArticleTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 }

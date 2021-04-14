@@ -1,6 +1,7 @@
-package se.sdaproject;
+package se.sdaproject.Comment;
 
 import com.fasterxml.jackson.annotation.*;
+import se.sdaproject.Article.Article;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
